@@ -24,6 +24,7 @@ class CustomCameraViewController: UIViewController{
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?
     
     var image: UIImage?
+    var selectedLabelText: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +94,8 @@ class CustomCameraViewController: UIViewController{
         if segue.identifier == "showPhoto_Segue" {
             let previewVC = segue.destination as! PreviewViewController
             previewVC.image = self.image
+            previewVC.labelText = self.selectedLabelText!
+            
         }
     }
 }
@@ -109,10 +112,28 @@ extension CustomCameraViewController: AVCapturePhotoCaptureDelegate {
                     guard error == nil, let features = features, !features.isEmpty else {
                         return
                     }
-                    print(features)
+                    
+//                    var currentConfidence: Float = 0.0
+                    self.selectedLabelText = features[0].label
+//                    for feature in features {
+//                        let labelText = feature.label
+//                        let entityId = feature.entityID
+//                        let confidence = feature.confidence
+//
+//                        if currentConfidence < confidence {
+//                            currentConfidence = confidence
+//                            self.selectedLabelText = labelText
+//                        }
+//
+//                    }
+                    
+                    self.performSegue(withIdentifier: "showPhoto_Segue", sender: nil)
+                    
+                    
+            
                 }
             }
-            performSegue(withIdentifier: "showPhoto_Segue", sender: nil)
+            
         }
     }
 }

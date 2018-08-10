@@ -11,11 +11,14 @@ import UIKit
 class PreviewViewController: UIViewController {
     
     @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var recognizedItemLabel: UILabel!
     
     var image: UIImage!
+    var labelText: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        recognizedItemLabel.text = labelText
         photo.image = self.image
         // Do any additional setup after loading the view.
     }
