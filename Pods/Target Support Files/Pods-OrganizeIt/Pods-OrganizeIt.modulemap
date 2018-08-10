@@ -1,0 +1,6 @@
+framework module Pods_OrganizeIt {
+  umbrella header "Pods-OrganizeIt-umbrella.h"
+
+  export *
+  module * { export * }
+}
